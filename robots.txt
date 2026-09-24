@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Actualizar si el dominio definitivo es otro
+Sitemap: https://metalurgicaallende.com/sitemap.xml
