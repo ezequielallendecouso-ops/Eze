@@ -44,40 +44,24 @@
     onScroll();
   }
 
-  /* ---------- Imágenes reemplazables (máquinas) ----------
-     Si el archivo existe se muestra; si no, queda el placeholder gráfico. */
-  function watchImage(img) {
-    var fig = img.closest('.media');
-    if (!fig) return;
-    function ok() { fig.classList.add('is-loaded'); }
-    function missing() { fig.classList.add('is-missing'); }
-    if (img.complete) {
-      if (img.naturalWidth > 0) ok(); else if (img.getAttribute('src')) missing();
-    }
-    img.addEventListener('load', ok);
-    img.addEventListener('error', missing);
-  }
-  document.querySelectorAll('.media img[src]').forEach(watchImage);
-
-  /* ---------- Galería de piezas ----------
-     La sección está oculta. Se prueba cada foto y se muestra la sección
-     (y su link en el menú) solo si existe al menos una. */
-  var trabajos = document.getElementById('trabajos');
-  var navTrabajos = document.querySelector('[data-nav-trabajos]');
-  if (trabajos) {
-    trabajos.querySelectorAll('img[data-src]').forEach(function (img) {
+  /* ---------- Bloques de fotos reemplazables ----------
+     Cada bloque [data-photo-block] está oculto. Se prueba cada foto (data-src)
+     y el bloque se muestra solo si existe al menos una; las que faltan se quitan.
+     data-nav apunta al ítem del menú que se muestra junto con el bloque. */
+  document.querySelectorAll('[data-photo-block]').forEach(function (block) {
+    var navItem = block.getAttribute('data-nav') && document.querySelector(block.getAttribute('data-nav'));
+    block.querySelectorAll('img[data-src]').forEach(function (img) {
       var fig = img.closest('figure');
       var probe = new Image();
       probe.onload = function () {
         img.src = img.getAttribute('data-src');
-        fig.classList.add('is-loaded');
-        trabajos.hidden = false;
-        if (navTrabajos) navTrabajos.hidden = false;
+        block.hidden = false;
+        if (navItem) navItem.hidden = false;
       };
       probe.onerror = function () { fig.remove(); };
       probe.src = img.getAttribute('data-src');
     });
-  }
+  });
 
   /* ---------- Formulario de contacto ---------- */
   var form = document.getElementById('form-contacto');
@@ -104,7 +88,9 @@
         if (!valid && !firstInvalid) firstInvalid = el;
       });
       if (firstInvalid) {
-        setStatus('Revisá los campos marcados: nombre, email válido y mensaje son obligatorios.', 'error');
+        setStatus(requireEmail
+          ? 'Revisá los campos marcados: para enviar por email completá nombre, un email válido y el mensaje.'
+          : 'Revisá los campos marcados: completá nombre y mensaje.', 'error');
         firstInvalid.focus();
         return false;
       }
