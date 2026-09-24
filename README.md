@@ -30,7 +30,7 @@ Buscar en `index.html` los comentarios con la palabra **REEMPLAZAR** o **AGREGAR
 | **Fotos de piezas** | Subir `pieza-01.jpg` … `pieza-08.jpg` (1:1, ej. 1200×1200). La sección *Trabajos* y su link en el menú aparecen solos cuando hay al menos una foto. Editar el `alt` de cada una en `index.html` describiendo la pieza. |
 | **Redes sociales** | Bloque comentado en el footer. Descomentar y poner las URLs reales. |
 | **Formulario** | El botón principal abre WhatsApp con el mensaje armado; el secundario abre el mail del visitante. Para recibir los mensajes directo: crear un formulario en [Formspree](https://formspree.io) y pegar la URL en `data-endpoint="…"` del `<form>`. |
-| **Datos técnicos** | Tabla de máquinas y bloque "Materiales / Volúmenes / Sectores" en la sección Servicios y Capacidades. Falta confirmar el espesor máximo de acero inoxidable y los datos del torno. |
+| **Datos técnicos** | Tabla de máquinas y bloque "Materiales / Volúmenes / Sectores" en la sección Servicios y Capacidades. La columna "Uso típico" es una estimación: revisarla. Falta confirmar el espesor máximo de acero inoxidable y el diámetro máximo del torno automático a levas (hoy la celda de capacidad muestra "—"). |
 | **Dominio** | Cuando esté activo: agregar `canonical` y `og:url` (comentario en el `<head>`), pasar `og:image` a URL absoluta, y verificar el dominio en `robots.txt` y `sitemap.xml` (estos dos exigen URL absoluta; hoy apuntan a `metalurgicaallende.com`). |
 
 Optimizar fotos antes de subir (ej. [Squoosh](https://squoosh.app)): JPG calidad ~80, menos de 250 KB cada una.
