@@ -346,6 +346,7 @@ address { font-style: normal; }
   .machines td:last-child { margin-top: 6px; }
   .machines td[data-na] { display: none; }
 }
+.table-note { margin: 12px 0 0; color: var(--acero-medio); font-size: .95rem; }
 .gallery--machines { margin-top: 24px; }
 @media (min-width: 1000px) { .gallery--machines { grid-template-columns: repeat(4, 1fr); } }
 
